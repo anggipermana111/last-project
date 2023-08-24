@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header-light {
+    @apply bg-slate-300/80
+}
+
+.header-dark {
+    @apply bg-slate-950/80 
+}
+
+.theme {
+  @apply w-10 h-10 rounded-full flex justify-center items-center;
+}
+
+.theme-light {
+  @apply bg-slate-200/50;
+}
+
+.theme-dark {
+  @apply bg-slate-800/70;
+}
+
+.text-light {
+    @apply text-black
+}
+
+.text-dark {
+    @apply text-white
+}
+
+.banner-light {
+    @apply before:bg-white before:opacity-10
+}
+
+.banner-dark {
+    @apply before:bg-black before:opacity-40
+}
+
+.movie-light {
+    @apply bg-slate-200
+}
+
+.movie-dark {
+    @apply bg-gray-950
+}
+
+.form-light {
+    @apply bg-slate-400/80
+}
+
+.form-dark {
+    @apply bg-gray-950/90
+}
+
+.footer-light {
+    @apply bg-slate-400/80
+}
+
+.footer-dark {
+    @apply bg-slate-950
+}
+
+.film-light {
+    @apply bg-slate-400
+}
+
+.film-dark {
+    @apply bg-gray-900
+}
+
