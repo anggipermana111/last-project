@@ -6,8 +6,10 @@ type RepoFilm interface {
 	PostFilm(models.Film) error
 	GetFilm() ([]models.Film, error)
 	UpdateFilm(string, models.Film) error
-	Delete(uint) error
+	// Delete(uint) error
 	GetFilmById(string) (*models.Film, error)
+	GetFilmWithGenres() ([]models.Film, error)
+	GetGenresByIds([]uint, *[]models.Genre) error
 }
 
 type RepoGenre interface {
@@ -17,6 +19,12 @@ type RepoGenre interface {
 }
 
 type RepoUser interface {
+	// Post register
 	PostUser(models.User) error
 	GetUser() ([]models.User, error)
+	Login(email string) (*models.User, error)
+}
+
+type RepoLogin interface {
+	Login()
 }

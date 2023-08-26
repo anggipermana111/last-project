@@ -18,6 +18,8 @@ func main() {
 		Db: db,
 	}
 
+	router.Static("/assets", "./public")
+
 	middleware.CorsHandle(routs.R)
 
 	routs.Router()

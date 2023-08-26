@@ -32,7 +32,7 @@ export default function Movie() {
                                 className="w-full overflow-clip"
                             />
                             <a
-                                href={`https://www.youtube.com/embed/${movie?.trailer}`}
+                                href={movie?.trailer}
                                 className="w-[81px] h-[81px] absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-10"
                             >
                                 <img

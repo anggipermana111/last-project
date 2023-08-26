@@ -12,6 +12,7 @@ func NewUser(db *gorm.DB) repoDB {
 }
 
 func (repo repoDB) PostUser(data models.User) error {
+	// bcrypt.CompareHashAndPassword()
 	bytes, err := bcrypt.GenerateFromPassword([]byte(data.Password), 14)
 	if err != nil {
 		return err
@@ -30,4 +31,16 @@ func (repo repoDB) GetUser() ([]models.User, error) {
 	}
 
 	return dataUser, nil
+}
+
+// Percobaan
+
+func (repo repoDB) Login(email string) (*models.User, error) {
+	var user models.User
+
+	if err := repo.Db.First(&user, "email=?", email).Error; err != nil {
+		return nil, err
+	}
+
+	return &user, nil
 }

@@ -63,7 +63,9 @@ export default function Home() {
                     <img src={movie.poster} alt=""/>
                     <div className="absolute bottom-0 px-3 pb-10 bg-gradient-to-b from-slate-500/10 via-slate-700/30 hover:via-slate-500/30 to-slate-900/70 hover:to-slate-700/70 w-full h-full flex justify-end flex-col gap-3">
                       <h1 className="text-3xl font-bold">{movie.judul}</h1>
-                      <p className="italic">Action, Adventure, Comedy</p>
+                      <p className="italic">
+                      {movie.Genres.map((genre) => genre.nama).join(", ")}
+                      </p>
                     </div>
                     {/* <div className="py-4 px-2">
                       {movie.genres.map((genre) => genre.genreName).join(", ")}

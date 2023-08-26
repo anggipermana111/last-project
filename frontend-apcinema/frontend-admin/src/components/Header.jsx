@@ -1,70 +1,37 @@
-import { Link } from "react-router-dom";
+import React from 'react';
 
-export default function Header() {
+import { GiHamburgerMenu } from "react-icons/gi"
+import {IoPersonCircle} from "react-icons/io5"
+
+const Header = ({ toggleSidebar }) => {
   return (
-    <header className="border-b border-b-slate-600 py-5 sticky w-full top-0 left-0 z-50 bg-[#0a1e5e] mb-5">
-        <div className="w-full px-4 mx-auto max-w-[1170px]">
-          <div className="flex justify-between items-center">
-            <Link to="/" className="w-[170px] flex items-center gap-2">
-              {/* <img src={logo} alt="logo" />{" "} */}
-              <span className="text-white text-3xl font-bold">
-                Tiket<span className="text-red-600">Go</span>
-              </span>
-            </Link>
-            <nav className="flex flex-wrap gap-5">
-              <ul className="flex flex-wrap justify-end items-center m-0 p-0">
-                <li className="px-6 py-[5px] relative list-none">
-                  <Link
-                    to="/schedule"
-                    className="uppercase text-[#e9eeff] text-base font-bold p-[5px] relative"
-                  >
-                    schedule
-                  </Link>
-                </li>
-                <li className="px-6 py-[5px] relative list-none">
-                  <Link
-                    to="/movie"
-                    className="uppercase text-[#e9eeff] text-base font-bold p-[5px] relative"
-                  >
-                    movie
-                  </Link>
-                </li>
-                <li className="px-6 py-[5px] relative list-none">
-                  <Link
-                    to="/studio"
-                    className="uppercase text-[#e9eeff] text-base font-bold p-[5px] relative"
-                  >
-                    studio
-                  </Link>
-                </li>
-                <li className="px-6 py-[5px] relative list-none">
-                  <Link
-                    to="/genre"
-                    className="uppercase text-[#e9eeff] text-base font-bold p-[5px] relative"
-                  >
-                    genre
-                  </Link>
-                </li>
-                <li className="px-6 py-[5px] relative list-none">
-                  <Link
-                    to="/customer"
-                    className="uppercase text-[#e9eeff] text-base font-bold p-[5px] relative"
-                  >
-                    customer
-                  </Link>
-                </li>
-                <li className="px-6 py-[5px] relative list-none">
-                  <Link
-                    to="/booking"
-                    className="uppercase text-[#e9eeff] text-base font-bold p-[5px] relative"
-                  >
-                    booking
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
+    <header className="bg-white shadow-md p-4 flex justify-between items-center px-10 sticky top-0 z-50">
+      <div className="flex items-center justify-between gap-24">
+        <h1 className="text-2xl ml-4 font-bold text-blue-700">Admin Cinema</h1>
+        <div className="flex items-center gap-10">
+        <button
+          className="text-gray-600 focus:outline-none"
+          onClick={toggleSidebar}
+        >
+          <GiHamburgerMenu color='black' size={25}/>
+        </button>
+        <input
+          type="text"
+          placeholder="Search"
+          className="border border-gray-300 rounded p-2 mr-4"
+        />
+      </div>
+      </div>
+      {/* <div className="w-10 h-10 rounded-full overflow-hidden"> */}
+          {/* <img
+            // src="path_to_profile_image.jpg" // Ganti dengan URL gambar profil
+            alt="Profile"
+            className="w-full h-full object-cover"
+          /> */}
+          <IoPersonCircle size={50} color='#888'/>
+        {/* </div> */}
+    </header>
   );
-}
+};
+
+export default Header;

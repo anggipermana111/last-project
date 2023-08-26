@@ -69,7 +69,7 @@ export default function Header() {
                     <nav className={`lg:hidden fixed header-${theme} z-50 top-[72px] md:top-[92px] w-full flex justify-center`}>
                         <ul className="flex flex-col items-center gap-5 py-5">
                             {
-                                listHeader.map((list, i) => {
+                                ["Home", "About Us", "Contact"].map((list, i) => {
                                     return <ListHeaderNav key={i} i={i} theme={theme} text={list} select={select} setSelect={setSelect} setBurger={setBurger} />
                                 })
                             }

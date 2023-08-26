@@ -16,8 +16,13 @@ func (repo repoDB) PostGenre(data models.Genre) error {
 	}
 	return nil
 }
-func (repo repoDB) GetGenre() ([]models.Genre, error) {
-	return nil, nil
+func (repo repoDB) GetGenre() (dataGenre []models.Genre, err error) {
+
+	if err := repo.Db.Find(&dataGenre).Error; err != nil {
+		return nil, err
+	}
+
+	return
 }
 func (repo repoDB) UpdateGenre(string, models.Genre) error {
 	return nil
