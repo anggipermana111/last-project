@@ -5,7 +5,7 @@ import {IoPersonCircle} from "react-icons/io5"
 
 const Header = ({ toggleSidebar }) => {
   return (
-    <header className="bg-white shadow-md p-4 flex justify-between items-center px-10 sticky top-0 z-50">
+    <header className="bg-white shadow-md h-20 flex justify-between items-center px-10 sticky top-0 z-50">
       <div className="flex items-center justify-between gap-24">
         <h1 className="text-2xl ml-4 font-bold text-blue-700">Admin Cinema</h1>
         <div className="flex items-center gap-10">

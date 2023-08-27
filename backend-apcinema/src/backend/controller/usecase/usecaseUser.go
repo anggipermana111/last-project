@@ -4,7 +4,8 @@ import (
 	"backend/controller"
 	"backend/helper"
 	"backend/jwt"
-	"backend/middleware"
+
+	// "backend/jwt"
 	"backend/models"
 	"errors"
 	"net/http"
@@ -17,20 +18,36 @@ type usecaseUser struct {
 	repo controller.RepoUser
 }
 
+// func (use usecaseUser) UsePostUser(contex *gin.Context) {
+// 	var data models.User
+
+// 	if err := contex.ShouldBindJSON(&data); err != nil {
+// 		helper.Response(contex, http.StatusBadRequest, map[string]any{"Error": err.Error()})
+// 		return
+// 	}
+
+// 	if err := use.repo.PostUser(data); err != nil {
+// 		helper.Response(contex, http.StatusInternalServerError, map[string]any{"Error": err.Error()})
+// 		return
+// 	}
+
+// 	helper.Response(contex, http.StatusOK, map[string]any{"Response": "Berhasil Tambah User Baru"})
+// }
+
 func (use usecaseUser) UsePostUser(contex *gin.Context) {
 	var data models.User
 
 	if err := contex.ShouldBindJSON(&data); err != nil {
-		helper.Response(contex, http.StatusBadRequest, map[string]any{"Error": err.Error()})
+		helper.Response(contex, http.StatusBadRequest, map[string]interface{}{"Error": err.Error()})
 		return
 	}
 
 	if err := use.repo.PostUser(data); err != nil {
-		helper.Response(contex, http.StatusInternalServerError, map[string]any{"Error": err.Error()})
+		helper.Response(contex, http.StatusInternalServerError, map[string]interface{}{"Error": err.Error()})
 		return
 	}
 
-	helper.Response(contex, http.StatusOK, map[string]any{"Response": "Berhasil Tambah User Baru"})
+	helper.Response(contex, http.StatusOK, map[string]interface{}{"Response": "Berhasil Tambah User Baru"})
 }
 
 func (use usecaseUser) UseGetUser(contex *gin.Context) {
@@ -85,6 +102,7 @@ func NewUser(repo controller.RepoUser, r *gin.RouterGroup) {
 	v2 := r.Group("user")
 
 	v2.POST("add-user", rep.UsePostUser)
-	v2.GET("get-user", middleware.AuthHandle(), rep.UseGetUser)
+	// v2.GET("get-user", middleware.AuthHandle(), rep.UseGetUser)
+	v2.GET("get-user", rep.UseGetUser)
 	v2.POST("login", rep.Login)
 }

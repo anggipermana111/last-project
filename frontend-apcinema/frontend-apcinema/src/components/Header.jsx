@@ -6,7 +6,6 @@ import Logo from "../assets/AP-Logo.png"
 import { FaSun, FaMoon } from "react-icons/fa"
 import { IoClose } from "react-icons/io5"
 import { GiHamburgerMenu } from "react-icons/gi"
-import { useState } from "react";
 
 export default function Header() {
     const { theme, setTheme, burger, setBurger, select, setSelect } = useContext(AllContext)

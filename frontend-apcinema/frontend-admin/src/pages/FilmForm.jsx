@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const FilmForm = () => {
   const [genres, setGenres] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [formData, setFormData] = useState({
     judul: '',
-    poster: '',
+    poster: null,
     deskripsi: '',
     trailer: '',
     rating: '',
@@ -13,7 +13,6 @@ const FilmForm = () => {
   });
 
   useEffect(() => {
-    // Fetch genres from the API
     fetch('http://localhost:8080/api/genre/get-genre')
       .then(response => response.json())
       .then(data => {
@@ -24,57 +23,56 @@ const FilmForm = () => {
       });
   }, []);
 
-  // const handleVideoChange = (e) => {
-  //   const file = e.target.files[0];
-  //   setFormData({ ...formData, videoFile: file });
-  // };
-
   const handleGenreChange = (genreId) => {
     if (selectedGenres.includes(genreId)) {
       setSelectedGenres(selectedGenres.filter(id => id !== genreId));
     } else {
-      setSelectedGenres([...selectedGenres, genreId]);
+      setSelectedGenres([...selectedGenres, parseInt(genreId)]);
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(formData.poster.name);
-    const postData = { 
-      ...formData, 
-      poster: formData.poster.name,
-      genres: selectedGenres 
-    };
-    console.log(postData.poster);
 
-    fetch('http://localhost:8080/api/film/add-film', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(postData),
+    const postData = new FormData();
+    postData.append('judul', formData.judul);
+    postData.append('poster', formData.poster);
+    postData.append('deskripsi', formData.deskripsi);
+    postData.append('trailer', formData.trailer);
+    postData.append('rating', formData.rating);
+    postData.append('tanggal_rilis', new Date(formData.tanggal_rilis).toISOString());
+
+    selectedGenres.map(angka=>{
+      postData.append('genres', angka);
     })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Film added successfully:', data);
-        setFormData({
-          judul: '',
-          poster: '',
-          deskripsi: '',
-          trailer: '',
-          rating: '',
-          tanggal_rilis: '',
-        });
-        setSelectedGenres([]);
-      })
-      .catch(error => {
-        console.error('Error adding film:', error);
+
+    try {
+      console.log(formData);
+      console.log(postData);
+      const response = await fetch('http://localhost:8080/api/film/add-film', {
+        method: 'POST',
+        body: postData
       });
+      const data = await response.json();
+      console.log('Film added successfully:', data);
+      console.log(postData.getAll("trailer"));
+      setFormData({
+        judul: '',
+        poster: null,
+        deskripsi: '',
+        trailer: '',
+        rating: '',
+        tanggal_rilis: '',
+      });
+      setSelectedGenres([]);
+    } catch (error) {
+      console.error('Error adding film:', error);
+    }
   };
 
   return (
-    <div className="container mx-auto mt-8">
-      <form onSubmit={handleSubmit} className='w-1/2 m-auto flex flex-col gap-5 p-5 bg-slate-300 rounded-xl'>
+    <div className="container mx-auto py-10 overflow-y-scroll">
+      <form onSubmit={handleSubmit} className='w-[500px] m-auto flex flex-col gap-5 p-5 bg-slate-300 rounded-xl'>
         <h1 className='text-2xl font-bold'>Tambah Film</h1>
         <div >
           <label htmlFor="judul" className="block font-bold mb-2">Judul</label>
@@ -93,7 +91,10 @@ const FilmForm = () => {
             type="file"
             id="poster"
             accept="image/*"
-            onChange={(e) => setFormData({ ...formData, poster: e.target.files[0] })}
+            onChange={(e) => {
+              console.log(e.target.files[0]);
+              setFormData({ ...formData, poster: e.target.files[0] })
+            }}
           />
         </div>
         <div >

@@ -8,8 +8,8 @@ type RepoFilm interface {
 	UpdateFilm(string, models.Film) error
 	// Delete(uint) error
 	GetFilmById(string) (*models.Film, error)
-	GetFilmWithGenres() ([]models.Film, error)
 	GetGenresByIds([]uint, *[]models.Genre) error
+	UpdateFilmGenres(string, []models.Genre) error
 }
 
 type RepoGenre interface {
@@ -27,4 +27,8 @@ type RepoUser interface {
 
 type RepoLogin interface {
 	Login()
+}
+
+type RepoStudio interface {
+	GetStudio() ([]models.Studio, error)
 }

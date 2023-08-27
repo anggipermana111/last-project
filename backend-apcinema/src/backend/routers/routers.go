@@ -20,4 +20,5 @@ func (router Routers) Router() {
 	usecase.NewFilm(repo, v1)
 	usecase.NewGenre(repo, v1)
 	usecase.NewUser(repo, v1)
+	usecase.NewStudio(repo, v1)
 }

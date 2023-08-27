@@ -6,6 +6,13 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
 import Dashboard from './pages/Dashboard.jsx'
+import Main from './pages/Main.jsx'
+import FilmTable from './pages/FilmTable.jsx'
+import FilmForm from './pages/FilmForm.jsx'
+import EditFilmForm from './pages/EditFilmForm.jsx'
+import StudioTable from './pages/StudioTable.jsx'
+import UserTable from './pages/UserTable.jsx'
+import GenreTable from './pages/GenreTable.jsx'
 
 const router = createBrowserRouter([
   {
@@ -15,17 +22,47 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Dashboard />,
+        element: <Main />,
+        children: [
+          {
+            path: "/",
+            element: <Dashboard />,
+          },
+          {
+            path: "/film",
+            element: <FilmTable />,
+          },
+          {
+            path: "/add-film",
+            element: <FilmForm />
+          },
+          {
+            path: "/update-film/:id",
+            element: <EditFilmForm />
+          },
+          {
+            path: "/studio",
+            element: <StudioTable />,
+          },
+          {
+            path: "/user",
+            element: <UserTable />,
+          },
+          {
+            path: "/genre",
+            element: <GenreTable />,
+          }
+        ]
+      },
+      {
+        path: "/login",
+        element: <Login />
+      },
+      {
+        path: "/register",
+        element: <Register />
       }
     ]
-  },
-  {
-    path: "/login",
-    element: <Login />
-  },
-  {
-    path: "/register",
-    element: <Register />
   }
 ])
 
