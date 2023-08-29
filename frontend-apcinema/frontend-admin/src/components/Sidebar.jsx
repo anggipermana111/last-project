@@ -23,7 +23,7 @@ const Sidebar = ({ isOpen }) => {
     const menus = []
 
     menus.push(addMenu("Dashboard", <RxDashboard size={20} />, "/"))
-    menus.push(addMenu("Jadwal Tayang", <BiCameraMovie size={20} />, "/jadwal"))
+    menus.push(addMenu("Jadwal Tayang", <BiCameraMovie size={20} />, "/schedule"))
     menus.push(addMenu("Movie", <ImFilm size={20} />, "/film"))
     menus.push(addMenu("Genre", <VscTypeHierarchy size={20} />, "/genre"))
     menus.push(addMenu("Admin", <RiAdminLine size={20} />, "/admin"))
@@ -31,7 +31,7 @@ const Sidebar = ({ isOpen }) => {
     menus.push(addMenu("Studio", <TbBrandCinema4D size={20} />, "/studio"))
     menus.push(addMenu("Kursi", <MdOutlineChair size={20} />, "/kursi"))
     menus.push(addMenu("Makanan", <IoFastFoodOutline size={20} />, "/food"))
-    menus.push(addMenu("Pemesanan", <BiCameraMovie size={20} />, "/pemesanan"))
+    menus.push(addMenu("Pemesanan", <BiCameraMovie size={20} />, "/order"))
     menus.push(addMenu("Exit", <ImExit size={20} />, "/login"))
     const [select, setSelect] = useState(0);
     const location = useLocation(); // Menggunakan useLocation
@@ -56,18 +56,6 @@ const Sidebar = ({ isOpen }) => {
         }
     }, [location]); // Menggunakan location sebagai dependensi
 
-    
-
-    // Pada saat komponen di-mount, periksa apakah ada index menu yang telah dipilih sebelumnya
-    // useEffect(() => {
-    //     const currentPath = window.location.pathname;
-    //     console.log(currentPath);
-    //     menus.map((menu, i) => {
-    //         if (menu.destination == currentPath) {
-    //             setSelect(i);
-    //         }
-    //     })
-    // }, [])
 
     return (
         <aside

@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import React, { useState } from 'react';
 import { createContext } from "react";
-import ScheduleForm from "./pages/ScheduleForm";
 
 export const AllContext = createContext({})
 
@@ -10,8 +9,7 @@ export default function App() {
 
   return (
     <AllContext.Provider value={{token, setToken}}>
-      {/* <Outlet/> */}
-      <ScheduleForm/>
+      <Outlet/>
     </AllContext.Provider>
   )
 }

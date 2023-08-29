@@ -21,6 +21,8 @@ import FoodForm from './pages/FoodForm.jsx'
 import UserForm from './pages/UserForm.jsx'
 import AdminForm from './pages/AdminForm.jsx'
 import UpdateFilmForm from './pages/UpdateFilmForm.jsx'
+import ScheduleTable from './pages/ScheduleTable.jsx'
+import ScheduleForm from './pages/ScheduleForm.jsx'
 
 const router = createBrowserRouter([
   {
@@ -87,6 +89,14 @@ const router = createBrowserRouter([
           {
             path: "/add-admin",
             element: <AdminForm />,
+          },
+          {
+            path: "/schedule",
+            element: <ScheduleTable />,
+          },
+          {
+            path: "/add-schedule",
+            element: <ScheduleForm />,
           }
         ]
       },

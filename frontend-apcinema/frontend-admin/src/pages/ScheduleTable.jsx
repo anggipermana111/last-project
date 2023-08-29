@@ -28,8 +28,8 @@ const ScheduleTable = () => {
         <thead>
           <tr className="bg-gray-100">
             <th className="py-2 px-4 border">ID</th>
-            <th className="py-2 px-4 border">ID Film</th>
-            <th className="py-2 px-4 border">ID Studio</th>
+            <th className="py-2 px-4 border">Judul Film</th>
+            <th className="py-2 px-4 border">Studio</th>
             <th className="py-2 px-4 border">Tanggal tayang</th>
             <th className="py-2 px-4 border">Jam Tayang</th>
             <th className="py-2 px-4 border w-48">Aksi</th>
@@ -39,12 +39,12 @@ const ScheduleTable = () => {
           {schedules?.map((schedule, i) => (
             <tr className="hover:bg-gray-50" key={schedule.ID} >
               <td className="py-2 px-4 border text-center">{schedule.ID}</td>
-              <td className="py-2 px-4 border">{schedule.Film}</td>
-              <td className="py-2 px-4 border">{schedule.nama}</td>
-              <td className="py-2 px-4 border">{schedule.email}</td>
-              <td className="py-2 px-4 border">{schedule.nama}</td>
+              <td className="py-2 px-4 border">{schedule.film.judul}</td>
+              <td className="py-2 px-4 border">{schedule.studio.nama}</td>
+              <td className="py-2 px-4 border">{schedule.tanggal}</td>
+              <td className="py-2 px-4 border">{schedule.jam}</td>
               <td className="py-2 px-4 border flex justify-center gap-5">
-                <Link to="" className="bg-green-500 text-white py-1 rounded w-32 text-center">Edit</Link>
+                <Link to="/add-schedule" className="bg-green-500 text-white py-1 rounded w-32 text-center">Edit</Link>
                 <button className="bg-red-500 text-white py-1 rounded w-32">Hapus</button>
               </td>
             </tr>

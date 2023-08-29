@@ -15,6 +15,7 @@ import Contact from './pages/Contact.jsx';
 import Movie from './pages/Movie.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
 import Seat from './pages/Seat.jsx';
+import CheckOut from './pages/CheckOut.jsx';
 
 // Deklarasi variabel router
 const router = createBrowserRouter([
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
           {
             path: "/seat/:id",
             element: <Seat/>
+          },
+          {
+            path: "/checkout",
+            element: <CheckOut/>
           }
         ]
       },

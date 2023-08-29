@@ -13,6 +13,8 @@ export default function App() {
   const [burger, setBurger] = useState(false)
   const [select, setSelect] = useState(0)
   const [bookedSeats, setBookedSeats] = useState([]);
+  const [schedule, setSchedule] = useState({});
+  const [price, setPrice] = useState(0)
 
   useEffect(() => {
     fetch(`http://localhost:8080/api/schedule/get-film`)
@@ -23,7 +25,7 @@ export default function App() {
   }, []);
 
   return (
-    <AllContext.Provider value={{theme, setTheme, burger, setBurger, select, setSelect, movies, bookedSeats, setBookedSeats}}>
+    <AllContext.Provider value={{theme, setTheme, burger, setBurger, select, setSelect, movies, bookedSeats, setBookedSeats, schedule, setSchedule, price, setPrice}}>
       <Outlet/>
     </AllContext.Provider>
   )

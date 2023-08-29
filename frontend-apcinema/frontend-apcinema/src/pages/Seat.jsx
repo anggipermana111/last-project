@@ -15,13 +15,12 @@ function Seat() {
 
     //   const [selected, setSelected] = useState(undefined);
     // untuk menampung data jadwal tayang
-    const [schedule, setSchedule] = useState({});
     //   untuk menampung kursi yang sudah dipesan
     const [seats, setSeats] = useState([]);
     const [apiSeats, setApiSeats] = useState([])
-    const [price, setPrice] = useState(0)
+    
     //   
-    const { bookedSeats, setBookedSeats } = useContext(AllContext)
+    const { bookedSeats, setBookedSeats, schedule, setSchedule, price, setPrice } = useContext(AllContext)
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -244,6 +243,7 @@ function Seat() {
                             </div>
                             <Link
                                 // to={!hasLogin ? "/login" : `/checkout/${selected?.id}`}
+                                to={`/checkout`}
                                 className={bookedSeats.length<=0 ? "pointer-events-none":""}
                             >
                                 {/* {setTampId(selected?.id)} */}
