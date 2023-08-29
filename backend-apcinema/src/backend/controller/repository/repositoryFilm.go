@@ -3,14 +3,7 @@ package repository
 import (
 	"backend/models"
 	"fmt"
-
-	"gorm.io/gorm"
 )
-
-// Film
-func NewFilm(db *gorm.DB) repoDB {
-	return repoDB{db}
-}
 
 func (repo repoDB) PostFilm(data models.Film) error {
 	if err := repo.Db.Create(&data).Error; err != nil {

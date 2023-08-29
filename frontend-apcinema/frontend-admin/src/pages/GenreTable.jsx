@@ -3,6 +3,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import {MdOutlineAddCircle} from "react-icons/md"
 
 const GenreTable = () => {
 
@@ -19,7 +20,10 @@ const GenreTable = () => {
     <div className="container mx-auto p-10 overflow-y-scroll">
       <div className='flex justify-between items-center'>
         <h1 className="text-2xl font-bold mb-4">Daftar Genre</h1>
-        <Link to="/add-film" className="bg-blue-500 text-white py-2 px-4 rounded float-right mb-4">Tambah Genre</Link>
+        <Link to="/add-genre" className="bg-blue-500 text-white py-2 px-4 rounded float-right mb-4 flex gap-3 items-center">
+          Tambah Genre
+          <MdOutlineAddCircle color='white' size={20}/>
+        </Link>
       </div>
       <table className="w-full border">
         <thead>

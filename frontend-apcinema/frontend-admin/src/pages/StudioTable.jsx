@@ -18,7 +18,7 @@ const StudioTable = () => {
   return (
     <div className="container mx-auto p-10 overflow-y-scroll">
       <div className='flex justify-start items-center'>
-        <h1 className="text-2xl font-bold mb-4">Daftar Studio</h1>
+        <h1 className="text-2xl font-bold mb-4">Daftar Nama Studio Di AP CINEMA</h1>
       </div>
       <table className="w-full border">
         <thead>
@@ -31,7 +31,7 @@ const StudioTable = () => {
           {studios?.map((studio, i) => (
             <tr className="hover:bg-gray-50" key={studio.ID} >
               <td className="py-2 px-4 border text-center">{i + 1}</td>
-              <td className="py-2 px-4 border">{studio.nama}</td>
+              <td className="py-2 px-4 border text-center">Studio {studio.nama}</td>
             </tr>
           ))}
         </tbody>

@@ -6,9 +6,28 @@ import Logo from "../assets/AP-Logo.png"
 import { FaSun, FaMoon } from "react-icons/fa"
 import { IoClose } from "react-icons/io5"
 import { GiHamburgerMenu } from "react-icons/gi"
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+
+function addMenu(name, destination) {
+    return { name, destination }
+}
 
 export default function Header() {
     const { theme, setTheme, burger, setBurger, select, setSelect } = useContext(AllContext)
+    const location = useLocation()
+    const menus = []
+    menus.push(addMenu("Home", "/"))
+    menus.push(addMenu("About", "/about"))
+    menus.push(addMenu("Contact", "/contact"))
+
+    useEffect(() => {
+        const currentPath = location.pathname;
+        const selectedIndex = menus.findIndex(menu => menu.destination === currentPath);
+        if (selectedIndex !== -1) {
+            setSelect(selectedIndex);
+        }
+    }, [location]); // Menggunakan location sebagai dependensi
     return (
         <>
             <header className={`border-b border-b-slate-600 py-5 fixed w-full top-0 left-0 z-50 header-${theme} backdrop-blur px-4 sm:px-8 md:px-16`}>
@@ -30,8 +49,18 @@ export default function Header() {
                         <nav className="hidden lg:flex lg:gap-5">
                             <ul className="flex flex-wrap justify-end items-center m-0 p-0">
                                 {
-                                    ["Home", "About Us", "Contact"].map((list, i) => {
-                                        return <ListHeaderNav key={i} i={i} theme={theme} text={list} select={select} setSelect={setSelect} setBurger={setBurger} />
+                                    menus.map((menu, i) => {
+                                        return <li key={i} className="px-6 py-[5px] relative list-none" onClick={()=>{
+                                            setSelect(i)
+                                            setBurger(false)
+                                        }}>
+                                            <Link
+                                                to={menu.destination}
+                                                className={`uppercase text-base font-bold p-[5px] relative ${select==i?`text-[#e00]`:`text-${theme}`}`}
+                                            >
+                                                {menu.name}
+                                            </Link>
+                                        </li>
                                     })
                                 }
                                 <li>

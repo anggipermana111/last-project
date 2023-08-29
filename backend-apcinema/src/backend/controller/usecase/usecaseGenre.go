@@ -3,7 +3,6 @@ package usecase
 import (
 	"backend/controller"
 	"backend/helper"
-	"backend/middleware"
 	"backend/models"
 	"fmt"
 	"net/http"
@@ -53,7 +52,8 @@ func NewGenre(repo controller.RepoGenre, r *gin.RouterGroup) {
 
 	v2 := r.Group("genre")
 
-	v2.POST("add-genre", middleware.AuthHandle(), rep.UsePostGenre)
+	// v2.POST("add-genre", middleware.AuthHandle(), rep.UsePostGenre)
+	v2.POST("add-genre", rep.UsePostGenre)
 	// v2.GET("get-genre", middleware.AuthHandleUser(), rep.UseGetGenre)
 	v2.GET("get-genre", rep.UseGetGenre)
 }

@@ -9,16 +9,24 @@ import Dashboard from './pages/Dashboard.jsx'
 import Main from './pages/Main.jsx'
 import FilmTable from './pages/FilmTable.jsx'
 import FilmForm from './pages/FilmForm.jsx'
-import EditFilmForm from './pages/EditFilmForm.jsx'
 import StudioTable from './pages/StudioTable.jsx'
 import UserTable from './pages/UserTable.jsx'
 import GenreTable from './pages/GenreTable.jsx'
+import ChairTable from './pages/ChairTable.jsx'
+import FoodTable from './pages/FoodTable.jsx'
+import AdminTable from './pages/AdminTable.jsx'
+import NotFoundPage from './pages/NotFoundPage.jsx'
+import GenreForm from './pages/GenreForm.jsx'
+import FoodForm from './pages/FoodForm.jsx'
+import UserForm from './pages/UserForm.jsx'
+import AdminForm from './pages/AdminForm.jsx'
+import UpdateFilmForm from './pages/UpdateFilmForm.jsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <div>error</div>,
+    errorElement: <NotFoundPage/>,
     children: [
       {
         path: "/",
@@ -38,7 +46,15 @@ const router = createBrowserRouter([
           },
           {
             path: "/update-film/:id",
-            element: <EditFilmForm />
+            element: <UpdateFilmForm />
+          },
+          {
+            path: "/genre",
+            element: <GenreTable />,
+          },
+          {
+            path: "/add-genre",
+            element: <GenreForm />,
           },
           {
             path: "/studio",
@@ -49,8 +65,28 @@ const router = createBrowserRouter([
             element: <UserTable />,
           },
           {
-            path: "/genre",
-            element: <GenreTable />,
+            path: "/add-user",
+            element: <UserForm />,
+          },
+          {
+            path: "/kursi",
+            element: <ChairTable />,
+          },
+          {
+            path: "/food",
+            element: <FoodTable />,
+          },
+          {
+            path: "/add-food",
+            element: <FoodForm />,
+          },
+          {
+            path: "/admin",
+            element: <AdminTable />,
+          },
+          {
+            path: "/add-admin",
+            element: <AdminForm />,
           }
         ]
       },

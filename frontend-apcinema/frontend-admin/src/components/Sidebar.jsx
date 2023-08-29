@@ -7,7 +7,7 @@ import { FiUser } from "react-icons/fi"
 import { TbBrandCinema4D } from "react-icons/tb"
 import { MdOutlineChair } from "react-icons/md"
 import { IoFastFoodOutline } from "react-icons/io5"
-import { BsTicketPerforated } from "react-icons/bs"
+import { RiAdminLine } from "react-icons/ri"
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useRef } from 'react';
@@ -26,10 +26,11 @@ const Sidebar = ({ isOpen }) => {
     menus.push(addMenu("Jadwal Tayang", <BiCameraMovie size={20} />, "/jadwal"))
     menus.push(addMenu("Movie", <ImFilm size={20} />, "/film"))
     menus.push(addMenu("Genre", <VscTypeHierarchy size={20} />, "/genre"))
+    menus.push(addMenu("Admin", <RiAdminLine size={20} />, "/admin"))
     menus.push(addMenu("User", <FiUser size={20} />, "/user"))
     menus.push(addMenu("Studio", <TbBrandCinema4D size={20} />, "/studio"))
     menus.push(addMenu("Kursi", <MdOutlineChair size={20} />, "/kursi"))
-    menus.push(addMenu("Makanan", <IoFastFoodOutline size={20} />, "/makanan"))
+    menus.push(addMenu("Makanan", <IoFastFoodOutline size={20} />, "/food"))
     menus.push(addMenu("Pemesanan", <BiCameraMovie size={20} />, "/pemesanan"))
     menus.push(addMenu("Exit", <ImExit size={20} />, "/login"))
     const [select, setSelect] = useState(0);

@@ -42,6 +42,11 @@ func Connection() *gorm.DB {
 	database.AutoMigrate(&models.Genre{})
 	database.AutoMigrate(&models.User{})
 	database.AutoMigrate(&models.Studio{})
+	database.AutoMigrate(&models.Chair{})
+	database.AutoMigrate(&models.Food{})
+	database.AutoMigrate(&models.Admin{})
+	database.AutoMigrate(&models.ShowSchedule{})
+	database.AutoMigrate(&models.Order{})
 
 	return database
 }

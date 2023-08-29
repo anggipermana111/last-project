@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const FilmForm = () => {
   const [genres, setGenres] = useState([]);
@@ -34,6 +35,10 @@ const FilmForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if(!confirm("Apakah anda yakin untuk menambah Film Baru?")) {
+      return
+    }
+
     const postData = new FormData();
     postData.append('judul', formData.judul);
     postData.append('poster', formData.poster);
@@ -42,20 +47,22 @@ const FilmForm = () => {
     postData.append('rating', formData.rating);
     postData.append('tanggal_rilis', new Date(formData.tanggal_rilis).toISOString());
 
-    selectedGenres.map(angka=>{
+    selectedGenres.map(angka => {
       postData.append('genres', angka);
     })
 
+    if (selectedGenres.length <= 0) {
+        alert("Pilih setidaknya 1 genre")
+        return
+    }
+
     try {
-      console.log(formData);
-      console.log(postData);
       const response = await fetch('http://localhost:8080/api/film/add-film', {
         method: 'POST',
         body: postData
       });
       const data = await response.json();
       console.log('Film added successfully:', data);
-      console.log(postData.getAll("trailer"));
       setFormData({
         judul: '',
         poster: null,
@@ -65,8 +72,12 @@ const FilmForm = () => {
         tanggal_rilis: '',
       });
       setSelectedGenres([]);
+      alert("Tambah Film Berhasil!");
     } catch (error) {
+      alert("Tambah Film Gagal!");
       console.error('Error adding film:', error);
+    } finally {
+      window.location.href = "/film"
     }
   };
 
@@ -83,6 +94,7 @@ const FilmForm = () => {
             className="border rounded px-2 py-1 w-full"
             value={formData.judul}
             onChange={(e) => setFormData({ ...formData, judul: e.target.value })}
+            required
           />
         </div>
         <div >
@@ -95,6 +107,7 @@ const FilmForm = () => {
               console.log(e.target.files[0]);
               setFormData({ ...formData, poster: e.target.files[0] })
             }}
+            required
           />
         </div>
         <div >
@@ -105,6 +118,7 @@ const FilmForm = () => {
             placeholder='deskripsi film'
             value={formData.deskripsi}
             onChange={(e) => setFormData({ ...formData, deskripsi: e.target.value })}
+            required
           />
         </div>
         <div >
@@ -116,6 +130,7 @@ const FilmForm = () => {
             className="border rounded px-2 py-1 w-full"
             value={formData.trailer}
             onChange={(e) => setFormData({ ...formData, trailer: e.target.value })}
+            required
           />
         </div>
         <div >
@@ -125,8 +140,11 @@ const FilmForm = () => {
             id="rating"
             step="0.1"
             className="border rounded px-2 py-1 w-full"
+            min={0}
+            max={10}
             value={formData.rating}
             onChange={(e) => setFormData({ ...formData, rating: e.target.value })}
+            required
           />
         </div>
         <div >
@@ -138,31 +156,9 @@ const FilmForm = () => {
             className="border rounded px-2 py-1 w-full"
             value={formData.tanggal_rilis}
             onChange={(e) => setFormData({ ...formData, tanggal_rilis: e.target.value })}
+            required
           />
         </div>
-        {/* <div >
-          <label htmlFor="videoFile" className="block font-bold mb-2">Upload Video</label>
-          <input
-            type="file"
-            id="videoFile"
-            accept="video/*"
-            onChange={handleVideoChange}
-            className="mb-2"
-          />
-          {formData.videoFile && (
-            <p>File terpilih: {formData.videoFile.name}</p>
-          )}
-        </div> */}
-        {/* <div >
-          <label htmlFor="videoFile" className="block font-bold mb-2">Upload Video</label>
-          <input
-            type="text"
-            id="videoFile"
-            onChange={handleVideoChange}
-            className="border rounded px-2 py-1 w-full"
-            placeholder='masukkan link YouTube Embed Trailer'
-          />
-        </div> */}
         <div >
           <label className="block font-bold mb-2">Genre</label>
           <div className="flex flex-wrap">

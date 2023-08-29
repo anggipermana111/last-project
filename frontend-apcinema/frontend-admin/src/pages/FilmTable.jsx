@@ -3,6 +3,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import {MdOutlineAddCircle} from "react-icons/md"
 
 const FilmTable = () => {
 
@@ -19,7 +20,9 @@ const FilmTable = () => {
     <div className="container mx-auto p-10 overflow-y-scroll">
       <div className='flex justify-between items-center'>
         <h1 className="text-2xl font-bold mb-4">Daftar Film</h1>
-        <Link to="/add-film" className="bg-blue-500 text-white py-2 px-4 rounded float-right mb-4">Tambah Film</Link>
+        <Link to="/add-film" className="bg-blue-500 text-white py-2 px-4 rounded float-right mb-4 flex gap-3 items-center">
+          Tambah Film <MdOutlineAddCircle color='white' size={20}/>
+        </Link>
       </div>
       <table className="w-full border">
         <thead>

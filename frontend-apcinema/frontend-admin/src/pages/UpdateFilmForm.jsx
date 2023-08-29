@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-const EditFilmForm = () => {
+const UpdateFilmForm = () => {
     const { id } = useParams();
     const [formData, setFormData] = useState({
         judul: '',
@@ -61,6 +60,10 @@ const EditFilmForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!confirm("Apakah anda yakin untuk mengubah Film ini?")) {
+            return
+        }
+
         const postData = new FormData();
         postData.append('judul', formData.judul);
         postData.append('poster', formData.poster);
@@ -74,6 +77,11 @@ const EditFilmForm = () => {
             postData.append('genres', angka);
         })
 
+        if (formData.genres.length <= 0) {
+            alert("Pilih setidaknya 1 genre")
+            return
+        }
+
         try {
             const response = await fetch(`http://localhost:8080/api/film/update-film/${id}`, {
                 method: 'PUT',
@@ -85,14 +93,14 @@ const EditFilmForm = () => {
         } catch (error) {
             console.error('Error updating film:', error);
         }
-
-        // <Navigate to={"/film"}/>
+        finally {
+            window.location.href = "/film"
+        }
     };
 
     return (
         <div className="container mx-auto py-10 overflow-y-scroll">
             <form onSubmit={handleSubmit} className='w-[500px] m-auto flex flex-col gap-5 p-5 bg-slate-300 rounded-xl'>
-                {/* ... (your form fields) ... */}
                 <h1 className='text-2xl font-bold'>Edit Film</h1>
                 <div >
                     <label htmlFor="judul" className="block font-bold mb-2">Judul</label>
@@ -103,6 +111,7 @@ const EditFilmForm = () => {
                         className="border rounded px-2 py-1 w-full"
                         value={formData.judul}
                         onChange={(e) => setFormData({ ...formData, judul: e.target.value })}
+                        required
                     />
                 </div>
                 <div >
@@ -112,10 +121,9 @@ const EditFilmForm = () => {
                         id="poster"
                         accept="image/*"
                         onChange={(e) => {
-                            console.log(e.target.files[0]);
                             setFormData({ ...formData, poster: e.target.files[0] })
                         }}
-                    // defaultValue={movie?.poster}
+                        required
                     />
                 </div>
                 <div >
@@ -126,7 +134,7 @@ const EditFilmForm = () => {
                         placeholder='deskripsi film'
                         value={formData.deskripsi}
                         onChange={(e) => setFormData({ ...formData, deskripsi: e.target.value })}
-                    // defaultValue={movie?.deskripsi}
+                        required
                     />
                 </div>
                 <div >
@@ -138,7 +146,7 @@ const EditFilmForm = () => {
                         className="border rounded px-2 py-1 w-full"
                         value={formData.trailer}
                         onChange={(e) => setFormData({ ...formData, trailer: e.target.value })}
-                    // defaultValue={movie?.trailer}
+                        required
                     />
                 </div>
                 <div >
@@ -148,9 +156,11 @@ const EditFilmForm = () => {
                         id="rating"
                         step="0.1"
                         className="border rounded px-2 py-1 w-full"
+                        min={0}
+                        max={10}
                         value={formData.rating}
                         onChange={(e) => setFormData({ ...formData, rating: e.target.value })}
-                    // defaultValue={movie?.rating}
+                        required
                     />
                 </div>
                 <div >
@@ -162,7 +172,7 @@ const EditFilmForm = () => {
                         className="border rounded px-2 py-1 w-full"
                         value={formData.tanggal_rilis}
                         onChange={(e) => setFormData({ ...formData, tanggal_rilis: e.target.value })}
-                    // defaultValue={movie?.tanggal_rilis}
+                        required
                     />
                 </div>
                 <div>
@@ -189,5 +199,5 @@ const EditFilmForm = () => {
     );
 };
 
-export default EditFilmForm;
+export default UpdateFilmForm;
 

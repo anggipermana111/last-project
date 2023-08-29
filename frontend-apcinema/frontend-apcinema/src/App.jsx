@@ -14,7 +14,7 @@ export default function App() {
   const [select, setSelect] = useState(0)
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/film/get-film`)
+    fetch(`http://localhost:8080/api/schedule/get-film`)
       .then((response) => response.json())
       .then((data) => {
         setMovies(data.Response)

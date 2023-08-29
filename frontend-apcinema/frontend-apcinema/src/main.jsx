@@ -13,6 +13,8 @@ import Regisster from './pages/Register.jsx';
 import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx';
 import Movie from './pages/Movie.jsx';
+import ErrorPage from './pages/ErrorPage.jsx';
+import Seat from './pages/Seat.jsx';
 
 // Deklarasi variabel router
 const router = createBrowserRouter([
@@ -20,7 +22,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     // halaman ketika router / endpoint tidak ditemukan
-    errorElement: <div>error</div>,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: "/",
@@ -41,6 +43,10 @@ const router = createBrowserRouter([
           {
             path: "/movie/:id",
             element: <Movie/>
+          },
+          {
+            path: "/seat/:id",
+            element: <Seat/>
           }
         ]
       },
@@ -62,6 +68,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <GoogleOAuthProvider clientId="969189430453-a7j0ijc74eousaep0e5l69g6dt6n1t6l.apps.googleusercontent.com">
       {/* Halaman yang di render sesuai dengan router / endpoint */}
       <RouterProvider router={router} />
+      {/* <ErrorPage/> */}
     </GoogleOAuthProvider>
   </React.StrictMode>,
 )

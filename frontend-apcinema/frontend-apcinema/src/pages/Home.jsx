@@ -38,11 +38,11 @@ export default function Home() {
 
       {/* section movie */}
       <section className={`py-[120px] movie-${theme} text-${theme} border-t border-t-gray-600`}>
-        <div className="max-w-[1170px] w-full px-[15px] mx-auto">
+        <div className="max-w-sm px-10 sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl w-full mx-auto">
           <div>
             <div className="flex justify-between items-center mb-[60px]">
               <div className="flex flex-col items-start">
-                <h2 className="uppercase mb-[19px] text-[50px] leading-[60px] -mt-[13px] font-bold">
+                <h2 className="text-3xl uppercase mb-[19px] sm:text-4xl md:text-[50px] leading-[60px] -mt-[13px] font-bold">
                   movies
                 </h2>
                 <p className="-mb-[8px] -mt-[11px]">
@@ -51,7 +51,7 @@ export default function Home() {
               </div>
             </div>
             {/* tab area movie */}
-            <div className="grid grid-cols-4 overflow-hidden justify-around gap-6">
+            <div className="grid cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {/* looping movie */}
               {movies.map((movie) => {
                 return (
