@@ -15,6 +15,12 @@ export default function App() {
   const [bookedSeats, setBookedSeats] = useState([]);
   const [schedule, setSchedule] = useState({});
   const [price, setPrice] = useState(0)
+  const [isHasLogin, setIsHasLogin] = useState(false)
+  useEffect(()=>{
+      if(localStorage.getItem("email")) {
+        isHasLogin(true)
+      }
+  },[]) 
 
   useEffect(() => {
     fetch(`http://localhost:8080/api/schedule/get-film`)
@@ -25,7 +31,7 @@ export default function App() {
   }, []);
 
   return (
-    <AllContext.Provider value={{theme, setTheme, burger, setBurger, select, setSelect, movies, bookedSeats, setBookedSeats, schedule, setSchedule, price, setPrice}}>
+    <AllContext.Provider value={{theme, setTheme, burger, setBurger, select, setSelect, movies, bookedSeats, setBookedSeats, schedule, setSchedule, price, setPrice, isHasLogin, setIsHasLogin}}>
       <Outlet/>
     </AllContext.Provider>
   )

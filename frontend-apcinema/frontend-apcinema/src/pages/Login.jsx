@@ -10,8 +10,11 @@ import { useState } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { Button } from "@mui/material"
 import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 export default function Login() {
+  const { theme, isHasLogin, setIsHasLogin, schedule } = useContext(AllContext)
+  const navigate = useNavigate()
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
@@ -30,14 +33,40 @@ export default function Login() {
   });
 
   // fungsi logout
-  const logOut = () => {
-    googleLogout();
-    setUser(null);
-  }
+  // const logOut = () => {
+  //   googleLogout();
+  //   setUser(null);
+  // }
+
+  const handleClickLogin = (event) => {
+    event.preventDefault();
+    fetch(`http://localhost:8080/api/user/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password
+      }),
+    }).then(async (response) => {
+      if (response.ok) {
+        alert("login succes...");
+        setIsHasLogin(true);
+        localStorage.setItem("email",email)
+        if (Object.keys(schedule).length === 0) {
+          navigate("/")
+        } else {
+          navigate("/checkout")
+        }
+      } else {
+        alert("login failed...");
+      }
+    });
+  };
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const { theme } = useContext(AllContext)
   const inputs = [{
     text: "email",
     set: setEmail
@@ -62,7 +91,7 @@ export default function Login() {
 
             <div className="mb-6 flex justify-center">
               <button
-                // onClick={handleClickLogin}
+                onClick={handleClickLogin}
                 type="submit"
                 className="font-semibold text-white text-lg uppercase 
                 bg-gradient-to-r from-[#00e] via-[#c0c] to-[#e00] rounded-[30px] h-[50px] w-auto px-[50px] hover:shadow-[0_10px_15px_0_rgba(59,55,188,0.5)] transition duration-300"

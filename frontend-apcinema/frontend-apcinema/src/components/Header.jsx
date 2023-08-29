@@ -14,7 +14,7 @@ function addMenu(name, destination) {
 }
 
 export default function Header() {
-    const { theme, setTheme, burger, setBurger, select, setSelect } = useContext(AllContext)
+    const { theme, setTheme, burger, setBurger, select, setSelect, isHasLogin, setIsHasLogin } = useContext(AllContext)
     const location = useLocation()
     const menus = []
     menus.push(addMenu("Home", "/"))
@@ -50,13 +50,13 @@ export default function Header() {
                             <ul className="flex flex-wrap justify-end items-center m-0 p-0">
                                 {
                                     menus.map((menu, i) => {
-                                        return <li key={i} className="px-6 py-[5px] relative list-none" onClick={()=>{
+                                        return <li key={i} className="px-6 py-[5px] relative list-none" onClick={() => {
                                             setSelect(i)
                                             setBurger(false)
                                         }}>
                                             <Link
                                                 to={menu.destination}
-                                                className={`uppercase text-base font-bold p-[5px] relative ${select==i?`text-[#e00]`:`text-${theme}`}`}
+                                                className={`uppercase text-base font-bold p-[5px] relative ${select == i ? `text-[#e00]` : `text-${theme}`}`}
                                             >
                                                 {menu.name}
                                             </Link>
@@ -71,14 +71,30 @@ export default function Header() {
                                     </button >
                                 </li>
                             </ul>
-                            <Link to="/register">
-                                <button
-                                    type="button"
-                                    className="font-semibold text-white text-base uppercase bg-gradient-to-r from-[#e00] via-[#c0c] to-[#00e] rounded-[30px] h-[50px] w-auto px-[50px] hover:shadow-[0_10px_15px_0_rgba(59,55,188,0.5)] transition duration-300"
-                                >
-                                    Join Us
-                                </button>
-                            </Link>
+                            kjshk
+                            {
+                                isHasLogin ? (
+                                    <button
+                                        type="button"
+                                        className="font-semibold text-white text-base uppercase bg-gradient-to-r from-[#e00] via-[#c0c] to-[#00e] rounded-[30px] h-[50px] w-auto px-[50px] hover:shadow-[0_10px_15px_0_rgba(59,55,188,0.5)] transition duration-300"
+                                        onClick={()=>{
+                                            setIsHasLogin(false)
+                                            localStorage.removeItem("email")
+                                        }}
+                                    >
+                                        Logout
+                                    </button>
+                                ) : (
+                                    <Link to="/register">
+                                        <button
+                                            type="button"
+                                            className="font-semibold text-white text-base uppercase bg-gradient-to-r from-[#e00] via-[#c0c] to-[#00e] rounded-[30px] h-[50px] w-auto px-[50px] hover:shadow-[0_10px_15px_0_rgba(59,55,188,0.5)] transition duration-300"
+                                        >
+                                            Join Us
+                                        </button>
+                                    </Link>
+                                )
+                            }
                         </nav>
                     </div>
                 </div>

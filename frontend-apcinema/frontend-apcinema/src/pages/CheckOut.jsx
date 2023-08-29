@@ -25,30 +25,6 @@ function CheckOut() {
             alert("Maaf anda belum melakukan pemesanan");
         }
     }, [])
-    // const [total,setTotal] = useState(0)
-    // console.log(schedule);
-    //   const navigate = useNavigate();
-
-    //   const { scheduleId } = useParams();
-    //   const [schedule, setSchedule] = useState({});
-    //   useEffect(() => {
-    //     window.scrollTo(0, 0);
-    //     fetch(`http://${import.meta.env.VITE_API_HOST}/schedules/${scheduleId}`)
-    //       .then((response) => response.json())
-    //       .then((schedule) => setSchedule(schedule));
-    //   }, []);
-
-    //   const {
-    //     bookedSeats,
-    //     setBookedSeats,
-    //     bookedSeatsId,
-    //     setBookedSeatsId,
-    //     price,
-    //     hasLogin,
-    //     setHasLogin,
-    //     tampId,
-    //     setTampId,
-    //   } = useContext(UserContext);
 
     const handleProceed = async (event) => {
         event.preventDefault();

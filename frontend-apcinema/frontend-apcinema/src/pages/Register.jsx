@@ -15,8 +15,10 @@ import ReCaptcha from "react-google-recaptcha"
 import { useRef } from 'react';
 import { useEffect } from "react"
 import { Navigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export default function Regisster() {
+    const navigate = useNavigate()
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [])
@@ -99,7 +101,7 @@ export default function Regisster() {
                         }).then(async (response) => {
                             if (response.ok) {
                                 alert("registration succes...");
-                                Navigate("/login");
+                                navigate("/login");
                             } else {
                                 alert("registration failed...");
                             }
