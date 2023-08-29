@@ -12,6 +12,7 @@ export default function App() {
   const [theme, setTheme] = useState("dark");
   const [burger, setBurger] = useState(false)
   const [select, setSelect] = useState(0)
+  const [bookedSeats, setBookedSeats] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:8080/api/schedule/get-film`)
@@ -22,7 +23,7 @@ export default function App() {
   }, []);
 
   return (
-    <AllContext.Provider value={{theme, setTheme, burger, setBurger, select, setSelect, movies}}>
+    <AllContext.Provider value={{theme, setTheme, burger, setBurger, select, setSelect, movies, bookedSeats, setBookedSeats}}>
       <Outlet/>
     </AllContext.Provider>
   )
