@@ -1,0 +1,62 @@
+1.) App.jsx(21) : mengganti 
+    isHasLogin(true) => setIsHasLogin(true)
+alasan : karena salah variabel
+
+2.) Checkout.jsx, About.jsx, Contact.jsx : menambahkan
+    useEffect(()=>{
+        window.scrollTo(0, 0);
+    },[])
+alasan : supaya ketika halaman di load akan menuju ke paling atas
+
+3.) Header.jsx(29-31) : menambahkan
+    else {
+         setSelect(0)
+    }
+setelah : 
+    if (selectedIndex !== -1) {
+         setSelect(selectedIndex);
+    }
+alasan : supaya jika currentPath tidak ketemu maka default select adalah 0
+
+4.) Header.jsx(57-60) : memindahkan onClick dari li ke Link
+alasan : supaya efeknya menyatu dengan to dari link
+
+5.) Header.jsx(23-27) : menambahkan
+    const currentPath = location.pathname
+    if(currentPath != "/about" && currentPath != "/contact") {
+        localStorage.setItem("home",currentPath)
+    }
+    menus[0].destination = localStorage.getItem("home")
+alasan : supaya si menu Home, bisa menyimpan path dari halaman yang berkaitan dengan proses pemesanan seperti "/movie", "/checkout", dsb
+fyi : location adalah variabel useLocation()
+
+6.) Seat.jsx(25-29) : menambahkan
+    useEffect(()=>{
+        setBookedSeats([])
+        setSchedule({})
+        setPrice(0)
+    },[])
+alasan : supaya bisa mereset pemesanan kursi yang sebelumnya batal dilakukan, misal sudah pesan kursi A01 namun menekan tombol kembali, maka di setBookedSeat menjadi kosong kembali
+
+7.) CheckOut.jsx(35) : mengubah
+"http://localhost:8082/api/post" => "http://localhost:8080/api/post"
+
+8.) CheckOut.jsx : mengubah
+    "transaction_details": {
+         "order_id": transaksi.id,
+         "gross_amount": parseInt(transaksi.bayar)
+    } => 
+    "transaction_details": {
+         "order_id": Math.random().toString(),
+         "gross_amount": price
+    }
+
+9.) corsHandle.go(11) : menambahkan 
+, "https://8610-45-118-112-142.ngrok-free.app"
+
+10.) Menggunakan ngrok untuk manipulasi url, sehingga setelah transaksi akan kembali ke halaman utama
+
+https://8610-45-118-112-142.ngrok-free.app
+https://8ac7-45-118-112-142.ngrok-free.app
+
+11.) 

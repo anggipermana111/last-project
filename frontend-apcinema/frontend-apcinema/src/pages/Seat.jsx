@@ -22,6 +22,12 @@ function Seat() {
     //   
     const { bookedSeats, setBookedSeats, schedule, setSchedule, price, setPrice } = useContext(AllContext)
 
+    useEffect(()=>{
+        setBookedSeats([])
+        setSchedule({})
+        setPrice(0)
+    },[])
+
     useEffect(() => {
         window.scrollTo(0, 0);
         fetch(`http://localhost:8080/api/schedule/get-schedule-by-id/${id}`)

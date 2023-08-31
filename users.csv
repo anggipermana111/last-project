@@ -1,0 +1,8 @@
+"id","created_at","updated_at","deleted_at","email","nama","password"
+1,"2023-08-24 09:26:44.437006+07","2023-08-24 09:26:44.437006+07",NULL,"user1@gmail.com","user1","$2a$14$cNpWMfreCmZ8qi7DCWtCo.MOqRByCXD.9qEo9L6x/7SkeUcLMKOZS"
+2,"2023-08-24 10:01:06.893756+07","2023-08-24 10:01:06.893756+07",NULL,"user2@gmail.com","user2","$2a$14$W7bFFyYLISopqK1NyEEuBOGgyTnw9Y.sO09Q741.HZv4VjDbgoHvq"
+3,"2023-08-24 10:23:00.247578+07","2023-08-24 10:23:00.247578+07",NULL,"user3@gmail.com","user3","$2a$14$RB3Fl0aQcGS9joKFqL3PM.COyx58B78csk4aQ4ZFnCHuqlmR27R1u"
+4,"2023-08-24 10:25:54.958475+07","2023-08-24 10:25:54.958475+07",NULL,"user4@gmail.com","user4","$2a$14$QKtSZrhuviA.96c3N6Ksb.DCBvjmC9D2/QpgzFM6sKbAdaXEoaWgS"
+5,"2023-08-24 10:28:53.712873+07","2023-08-24 10:28:53.712873+07",NULL,"user5@gmail.com","user5","$2a$14$I3xn95RfoVy2PROzKFANUubYcxgl18hbP/acJziywOafBUzjl6Fsy"
+6,"2023-08-28 16:39:36.819803+07","2023-08-28 16:39:36.819803+07",NULL,"user6@gmail.com","user 6","$2a$14$AGk02VM6kvElCe0uH4EWveYck1w1M7Oj7mxLZjRis.RmCdYzilkOW"
+7,"2023-08-29 23:44:54.112515+07","2023-08-29 23:44:54.112515+07",NULL,"user10@gmail.com","user10","$2a$14$pvRQ5Cw3DpCvt2tp798xdOtBrXKEFUt1OjL40jhOuTNN6vR2xUvXu"

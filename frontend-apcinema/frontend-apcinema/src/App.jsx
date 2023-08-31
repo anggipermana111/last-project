@@ -18,7 +18,7 @@ export default function App() {
   const [isHasLogin, setIsHasLogin] = useState(false)
   useEffect(()=>{
       if(localStorage.getItem("email")) {
-        isHasLogin(true)
+        setIsHasLogin(true)
       }
   },[]) 
 

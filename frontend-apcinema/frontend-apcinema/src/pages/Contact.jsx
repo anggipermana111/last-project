@@ -1,7 +1,11 @@
 import React from 'react';
 import aboutImage from "../assets/man.png"
+import { useEffect } from 'react';
 
 export default function Contact() {
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+},[])
   return (
     <div className="pt-20 px-10 flex flex-col gap-20 md:w-full md:grid md:grid-cols-2 md:p-20 md:gap-32 md:items-center md:pt-36">
       <img

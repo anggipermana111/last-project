@@ -1,0 +1,6 @@
+"id","created_at","updated_at","deleted_at","email","nama","password"
+1,"2023-08-28 10:28:30.350916+07","2023-08-28 10:28:30.350916+07",NULL,"anggipermana123@gmail.com","Anggi Permana","$2a$14$pA6iOrbLANEad0PamlkNh.vkYh0yk.Vshmv8yzhtGs5c/UAVeJr0i"
+2,"2023-08-28 10:41:59.341747+07","2023-08-28 10:41:59.341747+07",NULL,"miyamoto@gmail.com","Miyamoto Musashi","$2a$14$/HLt5RC.DnYHLG/60/MLIe3OGaJYowUxWu9dc/zZTPkZts1L8sSam"
+3,"2023-08-28 12:05:11.366327+07","2023-08-28 12:05:11.366327+07",NULL,"takeda@gmail.com","Takeda Shingen","$2a$14$LAVVTBB1q45z7srWjIfote4I0gqtmLPIFRCQO54XuaStTCtSshkEa"
+4,"2023-08-28 16:46:05.14453+07","2023-08-28 16:46:05.14453+07",NULL,"alexander@gmail.com","Alexander the Great","$2a$14$MUat38wIDUjUKnGObozQYOYUp/ztwa6k67Ci9zSLve9op6rDnh12q"
+5,"2023-08-28 16:47:03.179148+07","2023-08-28 16:47:03.179148+07",NULL,"leo@gmail.com","Leonidas I","$2a$14$lNr7QBfu0WSCgWh6/3y1g.TrG9dBcQ7eH1UiAA2M9a2r0c2Gmj4Am"

@@ -16,10 +16,13 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function CheckOut() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
     const navigate = useNavigate();
     const { schedule, setSchedule, bookedSeats, setBookedSeats, price, setPrice } = useContext(AllContext)
     useEffect(() => {
-        if (Object.keys(schedule).length===0) {
+        if (Object.keys(schedule).length === 0) {
             // console.log(schedule);
             navigate("/")
             alert("Maaf anda belum melakukan pemesanan");
@@ -29,26 +32,42 @@ function CheckOut() {
     const handleProceed = async (event) => {
         event.preventDefault();
 
-        const response = await fetch("http://localhost:8082/api/post", {
-                    method: "POST",
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json",
-                        // "Authorization": "Basic SB-Mid-server-vU0LLU6mFIaP0S6fO4EpEVsx",
-                    },
-                    body: JSON.stringify({
-                        "transaction_details": {
-                            "order_id": transaksi.id,
-                            "gross_amount": parseInt(transaksi.bayar)
-                        }
-                    }),
-                })
+        const response = await fetch("http://localhost:8080/api/post", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                // "Authorization": "Basic SB-Mid-server-vU0LLU6mFIaP0S6fO4EpEVsx",
+            },
+            body: JSON.stringify({
+                "transaction_details": {
+                    "order_id": Math.random().toString(),
+                    "gross_amount": price
+                }
+            }),
+        })
 
-                const data = await response.json()
+        const data = await response.json()
 
-                console.log(data);
+        console.log(data);
 
-                window.location.href = data.redirect_url ;
+        try {
+            const res = await fetch("http://localhost:8080/api/order/add-order", {
+                method: 'POST',
+                body: JSON.stringify(
+                    {
+                        "user_id":1,
+                        "showschedule_id":schedule.ID,
+                        "total":price,
+                        "Chairs":bookedSeats
+                    }
+                )
+            })
+        } catch (error) {
+            console.log(error);
+        }
+
+        // window.location.href = data.redirect_url;
     };
 
     return (

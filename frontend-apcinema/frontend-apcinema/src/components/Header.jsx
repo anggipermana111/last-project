@@ -20,12 +20,19 @@ export default function Header() {
     menus.push(addMenu("Home", "/"))
     menus.push(addMenu("About", "/about"))
     menus.push(addMenu("Contact", "/contact"))
+    const currentPath = location.pathname
+    if(currentPath != "/about" && currentPath != "/contact") {
+        localStorage.setItem("home",currentPath)
+    }
+    menus[0].destination = localStorage.getItem("home")
 
     useEffect(() => {
         const currentPath = location.pathname;
         const selectedIndex = menus.findIndex(menu => menu.destination === currentPath);
         if (selectedIndex !== -1) {
             setSelect(selectedIndex);
+        } else {
+            setSelect(0)
         }
     }, [location]); // Menggunakan location sebagai dependensi
     return (
@@ -50,11 +57,12 @@ export default function Header() {
                             <ul className="flex flex-wrap justify-end items-center m-0 p-0">
                                 {
                                     menus.map((menu, i) => {
-                                        return <li key={i} className="px-6 py-[5px] relative list-none" onClick={() => {
-                                            setSelect(i)
-                                            setBurger(false)
-                                        }}>
+                                        return <li key={i} className="px-6 py-[5px] relative list-none" >
                                             <Link
+                                                onClick={() => {
+                                                    setSelect(i)
+                                                    setBurger(false)
+                                                }}
                                                 to={menu.destination}
                                                 className={`uppercase text-base font-bold p-[5px] relative ${select == i ? `text-[#e00]` : `text-${theme}`}`}
                                             >
@@ -77,7 +85,7 @@ export default function Header() {
                                     <button
                                         type="button"
                                         className="font-semibold text-white text-base uppercase bg-gradient-to-r from-[#e00] via-[#c0c] to-[#00e] rounded-[30px] h-[50px] w-auto px-[50px] hover:shadow-[0_10px_15px_0_rgba(59,55,188,0.5)] transition duration-300"
-                                        onClick={()=>{
+                                        onClick={() => {
                                             setIsHasLogin(false)
                                             localStorage.removeItem("email")
                                         }}
