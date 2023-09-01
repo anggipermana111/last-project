@@ -59,4 +59,47 @@ alasan : supaya bisa mereset pemesanan kursi yang sebelumnya batal dilakukan, mi
 https://8610-45-118-112-142.ngrok-free.app
 https://8ac7-45-118-112-142.ngrok-free.app
 
-11.) 
+11.) CheckOut.jsx(54-71) : menambah
+    try {
+        const res = await fetch("http://localhost:8080/api/order/add-order", {
+            method: 'POST',
+            body: JSON.stringify(
+                {
+                    "user_id":1,
+                    "showschedule_id":schedule.ID,
+                    "total":price,
+                    "Chairs":[...bookedSeats.map(bookedSeat=>bookedSeat.kode)]
+                }
+            )
+        })
+        setSchedule({})
+        setBookedSeats([])
+        setPrice(0)
+    } catch (error) {
+        console.log(error);
+    }
+
+12.) repositoryChair.go(48-57) : mengganti
+    var subquery string
+
+    subqueryResult := []string{}
+    repo.Db.Model(&models.OrderChair{}).
+	Select("chair_kode").
+	Where("order_id = ?", orderID).
+	Find(&subqueryResult)
+
+    repo.Db.Where("kode IN ?", subqueryResult).
+    Find(&result)
+	
+	menjadi : 
+
+    var subqueryResults []string
+    repo.Db.Model(&models.OrderChair{}).
+	Select("chair_kode").
+	Joins("JOIN orders ON orders.id = order_chairs.order_id").
+	Where("orders.showschedule_id = ?", orderID).
+	Find(&subqueryResults)
+
+    repo.Db.Model(&models.Chair{}).
+	Where("kode IN ?", subqueryResults).
+	Find(&result)

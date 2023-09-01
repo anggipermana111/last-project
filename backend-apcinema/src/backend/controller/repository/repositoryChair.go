@@ -45,15 +45,15 @@ func (repo repoDB) GetAvailableChairs(orderID string) ([]models.Chair, error) {
 
 	var result []models.Chair
 
-	// var subquery string
-
-	subqueryResult := []string{}
+	var subqueryResults []string
 	repo.Db.Model(&models.OrderChair{}).
 		Select("chair_kode").
-		Where("order_id = ?", orderID).
-		Find(&subqueryResult)
+		Joins("JOIN orders ON orders.id = order_chairs.order_id").
+		Where("orders.showschedule_id = ?", orderID).
+		Find(&subqueryResults)
 
-	repo.Db.Where("kode IN ?", subqueryResult).
+	repo.Db.Model(&models.Chair{}).
+		Where("kode IN ?", subqueryResults).
 		Find(&result)
 
 	// repo.Db.Model(&models.Order{}).

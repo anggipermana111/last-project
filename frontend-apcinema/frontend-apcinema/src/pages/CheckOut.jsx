@@ -52,22 +52,26 @@ function CheckOut() {
         console.log(data);
 
         try {
-            const res = await fetch("http://localhost:8080/api/order/add-order", {
+            fetch("http://localhost:8080/api/order/add-order", {
                 method: 'POST',
                 body: JSON.stringify(
                     {
-                        "user_id":1,
-                        "showschedule_id":schedule.ID,
-                        "total":price,
-                        "Chairs":bookedSeats
+                        "user_id": 1,
+                        "showschedule_id": schedule.ID,
+                        "total": price,
+                        "Chairs": [...bookedSeats.map(bookedSeat => bookedSeat.kode)]
                     }
                 )
+            }).then(() => {
+                setSchedule({})
+                setBookedSeats([])
+                setPrice(0)
             })
         } catch (error) {
             console.log(error);
         }
 
-        // window.location.href = data.redirect_url;
+        window.location.href = data.redirect_url;
     };
 
     return (
